@@ -4,15 +4,23 @@ const Button = ({ name, handleClick }) => {
   return <button onClick={handleClick}>{name}</button>;
 };
 
+const StatisticLine = ({ text, value }) => {
+  return (
+    <>
+      {text} {value} <br></br>
+    </>
+  );
+};
+
 const Statistics = ({ good, neutral, bad }) => {
   let sum = good + neutral + bad;
   return sum > 0 ? (
     <>
-      good {good} <br></br>
-      neutral {neutral} <br></br>
-      bad {bad} <br></br>
-      all {sum} <br></br>
-      average {(good - bad) / sum} <br></br>
+      <StatisticLine text="good" value={good} />
+      <StatisticLine text="neutral" value={neutral} />
+      <StatisticLine text="bad" value={bad} />
+      <StatisticLine text="all" value={sum} />
+      <StatisticLine text="average" value={(good - bad) / sum} />
       positive {(good / sum) * 100} %
     </>
   ) : (
