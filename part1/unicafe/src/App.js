@@ -7,21 +7,33 @@ const Button = ({ name, handleClick }) => {
 const StatisticLine = ({ text, value }) => {
   return (
     <>
-      {text} {value} <br></br>
+      {text} {value}
     </>
   );
 };
 
 const Statistics = ({ good, neutral, bad }) => {
   let sum = good + neutral + bad;
+  let avg = (good - bad) / sum;
+  let positive = (good / sum) * 100;
   return sum > 0 ? (
     <>
-      <StatisticLine text="good" value={good} />
-      <StatisticLine text="neutral" value={neutral} />
-      <StatisticLine text="bad" value={bad} />
-      <StatisticLine text="all" value={sum} />
-      <StatisticLine text="average" value={(good - bad) / sum} />
-      positive {(good / sum) * 100} %
+      <table>
+        <tr>
+          <StatisticLine text="good" value={good} />
+        </tr>
+        <tr>
+          <StatisticLine text="neutral" value={neutral} />
+        </tr>
+        <tr>
+          <StatisticLine text="bad" value={bad} />
+        </tr>
+        <tr>
+          <StatisticLine text="all" value={sum} />
+        </tr>
+        <tr>average {parseFloat(avg).toFixed(1)}</tr>
+        <tr>positive {parseFloat(positive).toFixed(1) + " %"}</tr>
+      </table>
     </>
   ) : (
     <p>no feedback given</p>
