@@ -6,7 +6,7 @@ const Button = ({ name, handleClick }) => {
 
 const Statistics = ({ good, neutral, bad }) => {
   let sum = good + neutral + bad;
-  return (
+  return sum > 0 ? (
     <>
       good {good} <br></br>
       neutral {neutral} <br></br>
@@ -15,6 +15,8 @@ const Statistics = ({ good, neutral, bad }) => {
       average {(good - bad) / sum} <br></br>
       positive {(good / sum) * 100} %
     </>
+  ) : (
+    <p>no feedback given</p>
   );
 };
 
