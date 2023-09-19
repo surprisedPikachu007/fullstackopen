@@ -4,10 +4,15 @@ const Button = ({ name, handleClick }) => {
   return <button onClick={handleClick}>{name}</button>;
 };
 
-const Stat = ({ name, val }) => {
+const Stats = ({ good, neutral, bad }) => {
+  let sum = good + neutral + bad;
   return (
     <>
-      {name} {val} <br></br>
+      good {good} <br></br>
+      neutral {neutral} <br></br>
+      bad {bad} <br></br>
+      average {(good - bad) / sum} <br></br>
+      positive {(good / sum) * 100} %
     </>
   );
 };
@@ -26,9 +31,7 @@ const App = () => {
       <Button name={"bad"} handleClick={() => setBad(bad + 1)} />
 
       <h1>statistics</h1>
-      <Stat name={"good"} val={good} />
-      <Stat name={"neutral"} val={neutral} />
-      <Stat name={"bad"} val={bad} />
+      <Stats good={good} neutral={neutral} bad={bad} />
     </div>
   );
 };
